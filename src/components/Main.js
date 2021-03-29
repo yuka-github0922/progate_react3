@@ -1,5 +1,7 @@
 import React from 'react';
 import Lesson from './Lesson';
+import {MainTitle} from './atoms/MainTitle'
+import styles from './Main.module.css'
 
 class Main extends React.Component {
   render() {
@@ -30,7 +32,7 @@ class Main extends React.Component {
       <div className='main-wrapper'>
         <div className='main'>
           <div className='copy-container'>
-            <h1>Hello, World.</h1>
+            <MainTitle className={styles.mainHeading}>Hello, World.</MainTitle>
             <h2>プログラミングの世界へようこそ！</h2>
           </div>
           <div className='lesson-container'>

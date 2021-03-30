@@ -2,40 +2,46 @@ import React from 'react';
 import {useState} from 'react';
 
 const Lesson = (props) =>{
-  const [modal, setModal] = useState(false)
-  const modalClick = () => setModal(modal => {
-    console.log(`今は${modal}、逆にすると${!modal}`)
-    if(!modal) {
-      return modal =  (
-        <div className='modal'>
-          <div className='modal-inner'>
-            <div className='modal-header'></div>
-            <div className='modal-introduction'>
-              <h2>{props.name}</h2>
-              <p>{props.introduction}</p>
-            </div>
-            <button
-              className='modal-close-btn'
-              onClick={modalClick}
+  // stateは状態だけ扱う
+  const [showModal, setShowModal] = useState(false)
 
-            >
-              とじる
-            </button>
-          </div>
-        </div>
-      );
-    } return ''
-  })
+  // ボタンをクリックしたときのハンドラー
+  const handleButtonClick = () => {
+    setShowModal(true)
+  }
+
+  // モーダルの「とじる」をクリックしたときのハンドラー
+  const handleCloseButton = () => {
+    setShowModal(false)
+  }
+
   return(
     <React.Fragment>
       <div className='lesson-card'>
         <button
           className='lesson-item'
-          onClick={modalClick}
+          onClick={handleButtonClick}
         >button</button>
         <p>{props.name}</p>
         <img src={props.image} />
-        {modal}
+        {/*{modal}*/}
+        {showModal && (
+          <div className='modal'>
+            <div className='modal-inner'>
+              <div className='modal-header'></div>
+              <div className='modal-introduction'>
+                <h2>{props.name}</h2>
+                <p>{props.introduction}</p>
+              </div>
+              <button
+                className='modal-close-btn'
+                onClick={handleCloseButton}
+              >
+                とじる
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </React.Fragment>
   )
